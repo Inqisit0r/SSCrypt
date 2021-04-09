@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# Visual Studio`s files 
+build/Win/Crypto/.vs/*
+.vs/*
