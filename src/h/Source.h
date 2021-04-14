@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #ifndef bool
-typedef int bool;
+typedef int ssbool;
 #endif
 #ifndef false
 #define false 0x00

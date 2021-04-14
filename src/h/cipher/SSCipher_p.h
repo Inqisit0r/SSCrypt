@@ -1,8 +1,8 @@
 #ifndef SSPCIPHER_H
 #define SSPCIPHER_H
 
-#include "../Source.h"
-#include "../../../include/SSStatus.h"
+#include "Source.h"
+#include "SSStatus.h"
 
 struct ssEncryptionCtx_t {
 	uint8_t* initializationVector;

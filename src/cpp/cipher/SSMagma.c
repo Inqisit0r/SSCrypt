@@ -1,4 +1,4 @@
-#include "../../h/cipher/SSMagma.h"
+#include "SSMagma.h"
 
 uint32_t getRoundKey(int i, uint8_t* k)
 {
@@ -92,12 +92,15 @@ ssStatus crypt(uint8_t* in, uint8_t* key, uint8_t* out, int reverse)
 	}
 	if (reverse == 0x00)
 	{
-		encrypt;
+		encrypt(in, key, out);
+		return SSStatusSuccess;
 	}
 	else if (reverse == 0x01)
 	{
-		decrypt;
+		decrypt(in, key, out); 
+		return SSStatusSuccess;
 	}
+	return SSStatusError;
 }
 
 ssStatus ssEncryptBlockMagma(uint8_t* in, uint8_t* key, uint8_t* out)

@@ -18,6 +18,23 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSEcb.c" />
+    <ClCompile Include="..\..\..\src\cpp\cipher\SSCipher.c" />
+    <ClCompile Include="..\..\..\src\cpp\cipher\SSMagma.c" />
+    <ClCompile Include="..\..\..\src\cpp\cipher\SSSwaps.c" />
+    <ClCompile Include="..\..\..\src\cpp\Crypto.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\SSCipher.h" />
+    <ClInclude Include="..\..\..\include\SSCrypt.h" />
+    <ClInclude Include="..\..\..\include\SSStatus.h" />
+    <ClInclude Include="..\..\..\src\h\cipher\mode\SSEcb.h" />
+    <ClInclude Include="..\..\..\src\h\cipher\SSCipher_p.h" />
+    <ClInclude Include="..\..\..\src\h\cipher\SSMagma.h" />
+    <ClInclude Include="..\..\..\src\h\cipher\SSSwaps.h" />
+    <ClInclude Include="..\..\..\src\h\Source.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -72,23 +89,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>../../out/$(PlatformTarget)/$(Configuration)/bin</OutDir>
-    <IntDir>../../out/$(PlatformTarget)/$(Configuration)/bin</IntDir>
+    <OutDir>../out/$(PlatformTarget)/$(Configuration)/bin/</OutDir>
+    <IntDir>../out/$(PlatformTarget)/$(Configuration)/obj/</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>../../out/$(PlatformTarget)/$(Configuration)/bin</OutDir>
-    <IntDir>../../out/$(PlatformTarget)/$(Configuration)/bin</IntDir>
+    <OutDir>../out/$(PlatformTarget)/$(Configuration)/bin/</OutDir>
+    <IntDir>../out/$(PlatformTarget)/$(Configuration)/obj/</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>../../out/$(PlatformTarget)/$(Configuration)/bin</OutDir>
-    <IntDir>../../out/$(PlatformTarget)/$(Configuration)/bin</IntDir>
+    <OutDir>../out/$(PlatformTarget)/$(Configuration)/bin/</OutDir>
+    <IntDir>../out/$(PlatformTarget)/$(Configuration)/obj/</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>../../out/$(PlatformTarget)/$(Configuration)/bin</OutDir>
-    <IntDir>../../out/$(PlatformTarget)/$(Configuration)/bin</IntDir>
+    <OutDir>../out/$(PlatformTarget)/$(Configuration)/bin/</OutDir>
+    <IntDir>../out/$(PlatformTarget)/$(Configuration)/obj/</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -98,7 +115,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\src\h;..\..\src\h\cipher;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\src\h\;..\..\..\src\h\cipher\;..\..\..\include\;..\..\..\src\h\cipher\mode\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -116,7 +133,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\src\h;..\..\src\h\cipher;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\src\h\;..\..\..\src\h\cipher\;..\..\..\include\;..\..\..\src\h\cipher\mode\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -134,7 +151,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\src\h;..\..\src\h\cipher;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\src\h\;..\..\..\src\h\cipher\;..\..\..\include\;..\..\..\src\h\cipher\mode\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -152,7 +169,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\..\src\h;..\..\src\h\cipher;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\src\h\;..\..\..\src\h\cipher\;..\..\..\include\;..\..\..\src\h\cipher\mode\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -162,21 +179,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\..\include\SSCipher.h" />
-    <ClInclude Include="..\..\..\..\include\SSCrypt.h" />
-    <ClInclude Include="..\..\..\..\include\SSStatus.h" />
-    <ClInclude Include="..\..\..\..\src\h\cipher\SSCipher_p.h" />
-    <ClInclude Include="..\..\..\..\src\h\cipher\SSMagma.h" />
-    <ClInclude Include="..\..\..\..\src\h\cipher\SSSwaps.h" />
-    <ClInclude Include="..\..\..\..\src\h\Source.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\..\src\cpp\cipher\SSCipher.c" />
-    <ClCompile Include="..\..\..\..\src\cpp\cipher\SSMagma.c" />
-    <ClCompile Include="..\..\..\..\src\cpp\cipher\SSSwaps.c" />
-    <ClCompile Include="Crypto.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,4 +1,4 @@
-#include "..\..\h\cipher\SSSwaps.h"
+#include "SSSwaps.h"
 
 uint16_t swap16(uint16_t a)
 {

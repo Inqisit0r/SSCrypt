@@ -1,5 +1,5 @@
-#include "../../../include/SSCipher.h"
-#include "../../h/cipher/SSCipher_p.h"
+#include "SSCipher.h"
+#include "SSCipher_p.h"
 
 ssStatus ssEncrypt(
 	__in	ssCipherAlgorithms	eAlgorithm,

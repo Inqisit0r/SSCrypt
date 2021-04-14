@@ -1,7 +1,7 @@
 #ifndef SSCIPHER_H
 #define SSCIPHER_H
 
-#include "../src/h/cipher/SSCipher_p.h"
+#include "SSCipher_p.h"
 
 /** @brief Алгоритмы шифрования */
 typedef enum ssCipherAlgorithms_t {

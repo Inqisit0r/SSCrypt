@@ -1,7 +1,7 @@
 #ifndef SSSWAPS_H
 #define SSSWAPS_H
 
-#include "../Source.h"
+#include "Source.h"
 
 uint16_t swap16(uint16_t a);
 

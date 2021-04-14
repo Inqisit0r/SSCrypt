@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Crypto", "Crypto\Crypto.vcxproj", "{76787705-773F-443F-9BC5-529C905DB582}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CryptoTesting", "CryptoTesting\CryptoTesting.vcxproj", "{543B211B-5CC0-4788-934B-B667C1769706}"
+	ProjectSection(ProjectDependencies) = postProject
+		{76787705-773F-443F-9BC5-529C905DB582} = {76787705-773F-443F-9BC5-529C905DB582}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +26,14 @@ Global
 		{76787705-773F-443F-9BC5-529C905DB582}.Release|x64.Build.0 = Release|x64
 		{76787705-773F-443F-9BC5-529C905DB582}.Release|x86.ActiveCfg = Release|Win32
 		{76787705-773F-443F-9BC5-529C905DB582}.Release|x86.Build.0 = Release|Win32
+		{543B211B-5CC0-4788-934B-B667C1769706}.Debug|x64.ActiveCfg = Debug|x64
+		{543B211B-5CC0-4788-934B-B667C1769706}.Debug|x64.Build.0 = Debug|x64
+		{543B211B-5CC0-4788-934B-B667C1769706}.Debug|x86.ActiveCfg = Debug|Win32
+		{543B211B-5CC0-4788-934B-B667C1769706}.Debug|x86.Build.0 = Debug|Win32
+		{543B211B-5CC0-4788-934B-B667C1769706}.Release|x64.ActiveCfg = Release|x64
+		{543B211B-5CC0-4788-934B-B667C1769706}.Release|x64.Build.0 = Release|x64
+		{543B211B-5CC0-4788-934B-B667C1769706}.Release|x86.ActiveCfg = Release|Win32
+		{543B211B-5CC0-4788-934B-B667C1769706}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
