@@ -19,17 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSEcb.c" />
+    <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeECB.c" />
+    <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSPadding.c" />
     <ClCompile Include="..\..\..\src\cpp\cipher\SSCipher.c" />
     <ClCompile Include="..\..\..\src\cpp\cipher\SSMagma.c" />
     <ClCompile Include="..\..\..\src\cpp\cipher\SSSwaps.c" />
-    <ClCompile Include="..\..\..\src\cpp\Crypto.cpp" />
+    <ClCompile Include="..\..\..\src\cpp\Crypto.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\SSCipher.h" />
     <ClInclude Include="..\..\..\include\SSCrypt.h" />
     <ClInclude Include="..\..\..\include\SSStatus.h" />
-    <ClInclude Include="..\..\..\src\h\cipher\mode\SSEcb.h" />
+    <ClInclude Include="..\..\..\src\h\cipher\mode\SSMode.h" />
+    <ClInclude Include="..\..\..\src\h\cipher\mode\SSPadding.h" />
     <ClInclude Include="..\..\..\src\h\cipher\SSCipher_p.h" />
     <ClInclude Include="..\..\..\src\h\cipher\SSMagma.h" />
     <ClInclude Include="..\..\..\src\h\cipher\SSSwaps.h" />

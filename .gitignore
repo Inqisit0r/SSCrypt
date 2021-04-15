@@ -36,3 +36,4 @@ build/Win/.vs/*
 *.vcxproj.user
 build/Win/CryptoTesting/out/*
 build/Win/out/*
+.vs/*

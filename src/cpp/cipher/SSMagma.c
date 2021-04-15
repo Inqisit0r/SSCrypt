@@ -4,11 +4,11 @@ uint32_t getRoundKey(int i, uint8_t* k)
 {
 	if (i < 24)
 	{
-		return swap32(*((uint32_t*)(k + (i % 8) * 4)));
+		return ssSwap32(*((uint32_t*)(k + (i % 8) * 4)));
 	}
 	else
 	{
-		return swap32(*((uint32_t*)(k + (7 - (i % 8)) * 4)));
+		return ssSwap32(*((uint32_t*)(k + (7 - (i % 8)) * 4)));
 	}
 }
 
@@ -48,7 +48,7 @@ uint64_t G1(uint32_t a1, uint32_t a0, uint32_t k)
 
 void encrypt(uint8_t* input, uint8_t* key, uint8_t* output)
 {
-	uint64_t in = swap64(swab64(input));
+	uint64_t in = ssSwap64(ssSwab64(input));
 	uint64_t out = 0;
 	int i = 0;
 
@@ -62,12 +62,12 @@ void encrypt(uint8_t* input, uint8_t* key, uint8_t* output)
 		a0 = (uint32_t)(out);
 	}
 	out = G1(a1, a0, getRoundKey(31, key));
-	swat64(swap64(out), output);
+	ssSwat64(ssSwap64(out), output);
 }
 
 void decrypt(uint8_t* input, uint8_t* key, uint8_t* output)
 {
-	uint64_t in = swap64(swab64(input));
+	uint64_t in = ssSwap64(ssSwab64(input));
 	uint64_t out = 0;
 	int i = 0;
 
@@ -81,7 +81,7 @@ void decrypt(uint8_t* input, uint8_t* key, uint8_t* output)
 		b0 = (uint32_t)(out);
 	}
 	out = G1(b1, b0, getRoundKey(0, key));
-	swat64(swap64(out), output);
+	ssSwat64(ssSwap64(out), output);
 }
 
 ssStatus crypt(uint8_t* in, uint8_t* key, uint8_t* out, int reverse)

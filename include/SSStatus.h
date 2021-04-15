@@ -1,4 +1,3 @@
-
 #ifndef SSSTATUS_H
 #define SSSTATUS_H
 

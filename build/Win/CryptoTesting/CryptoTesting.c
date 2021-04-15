@@ -2,9 +2,10 @@
 //
 
 #include "SSMagma.h"
+#include "SSPadding.h"
 #include <stdio.h>
 
-int main()
+void ssEncryptBlockMagmaTest()
 {
 	uint8_t Key[] =
 	{ 0xff, 0xee, 0xdd, 0xcc, 0xbb, 0xaa, 0x99, 0x88,
@@ -15,8 +16,59 @@ int main()
 	uint64_t a = 0xfedcba9876543210;
 	uint64_t b = 0;
 
-	ssEncryptBlockMagma((uint8_t*)&a, Key, (uint8_t*)&b); 
+	ssEncryptBlockMagma((uint8_t*)&a, Key, (uint8_t*)&b);
 	printf("%llx", b);
+}
+
+//Сделать проверку для Decrypt
+
+//Переделать
+void ssPaddingTest()
+{
+	uint8_t a1[] = { 0x92, 0xde, 0xf0, 0x6b };
+	uint8_t a0[] = { 0x92, 0xde, 0xf0, 0x6b, 0x3c, 0x13 };
+	uint8_t b[8] = { 0 };
+	ssPadding01(a0, 6, b, 8);
+	printf("\nssPadding01 result = ");
+	for (int i = 0; i < 8; ++i) {
+		if (b[i] >= 0x10)
+		{
+			printf("%x", b[i]);
+		}
+		else
+		{
+			printf("0%x", b[i]);
+		}
+	}
+	ssPadding02(a0, 6, b, 8);
+	printf("\nssPadding02 result = ");
+	for (int i = 0; i < 8; ++i) {
+		if (b[i] >= 0x10)
+		{
+			printf("%x", b[i]);
+		}
+		else
+		{
+			printf("0%x", b[i]);
+		}
+	}
+	ssPadding03(a0, 6, b, 8);
+	printf("\nssPadding03 result = ");
+	for (int i = 0; i < 8; ++i) {
+		if (b[i] >= 0x10)
+		{
+			printf("%x", b[i]);
+		}
+		else
+		{
+			printf("0%x", b[i]);
+		}
+	}
+}
+
+int main()
+{
+	ssPaddingTest();
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
