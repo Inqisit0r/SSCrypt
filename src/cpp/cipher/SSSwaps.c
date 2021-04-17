@@ -76,3 +76,17 @@ void ssSwat64(uint64_t a, uint8_t* b)
 	b[7] = (uint8_t)(a);
 	ssSwab64(b);
 }
+
+
+void ssSwab8_64(uint8_t* a)
+{
+	uint8_t res[8] = { 0 };
+	for(int i = 0; i < 8; ++i)
+	{
+		res[i] = a[i];
+	}
+	for (int i = 0; i < 8; ++i)
+	{
+		a[i] = res[7 - i];
+	}
+}

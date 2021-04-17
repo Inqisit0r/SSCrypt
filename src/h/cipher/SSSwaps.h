@@ -23,4 +23,6 @@ uint64_t ssSwab64(uint8_t* a);
 
 void ssSwat64(uint64_t a, uint8_t* b);
 
+void ssSwab8_64(uint8_t* a);
+
 #endif //!SSSWAPS_H

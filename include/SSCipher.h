@@ -19,6 +19,12 @@ typedef enum ssCipherMode_t {
 	ssIdCipherModeMAC
 } ssCipherMode;
 
+/** @brief Паддинги */
+typedef enum ssPaddingMode_t {
+	ssIdPadding00,
+	ssIdPadding01
+} ssPaddingMode;
+
 /** @brief Шифрование входного битового вектора "vIn" размера "sInSize",
 *		результат запишется в выходной буффер "vOut" при достаточном размере указанном в "psOutSize".
 *		Алгоритм и режим шифрования указывается в параметрах "eAlgorithm", "eMode" соответственно.

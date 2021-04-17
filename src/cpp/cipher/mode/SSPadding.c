@@ -3,10 +3,6 @@
 
 ssStatus ssPadding01(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize)
 {
-	if ((in == NULL) || (out == NULL))
-	{
-		return SSStatusInvalidParameter;
-	}
 	if (inSize <= outSize)
 	{
 		size_t i = 0;
@@ -26,10 +22,6 @@ ssStatus ssPadding01(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize)
 
 ssStatus ssPadding02(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize)
 {
-	if ((in == NULL) || (out == NULL))
-	{
-		return SSStatusInvalidParameter;
-	}
 	if (inSize <= outSize)
 	{
 		size_t i = 0;
@@ -54,10 +46,6 @@ ssStatus ssPadding02(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize)
 
 ssStatus ssPadding03(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize)
 {
-	if ((in == NULL) || (out == NULL))
-	{
-		return SSStatusInvalidParameter;
-	}
 	if (inSize == outSize)
 		return SSStatusSuccess;
 	else if (inSize < outSize)
