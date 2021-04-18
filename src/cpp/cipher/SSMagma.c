@@ -48,7 +48,7 @@ uint64_t G1(uint32_t a1, uint32_t a0, uint32_t k)
 
 void encrypt(uint8_t* input, uint8_t* key, uint8_t* output)
 {
-	uint64_t in = ssSwap64(ssSwab64(input));
+	uint64_t in = ssSwap64(conv8to64(input));
 	uint64_t out = 0;
 	int i = 0;
 
@@ -67,7 +67,7 @@ void encrypt(uint8_t* input, uint8_t* key, uint8_t* output)
 
 void decrypt(uint8_t* input, uint8_t* key, uint8_t* output)
 {
-	uint64_t in = ssSwap64(ssSwab64(input));
+	uint64_t in = ssSwap64(conv8to64(input));
 	uint64_t out = 0;
 	int i = 0;
 

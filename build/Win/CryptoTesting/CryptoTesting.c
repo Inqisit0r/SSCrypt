@@ -89,7 +89,7 @@ void ssModeECBTest()
 
 	uint8_t b[32] = { 0 };
 
-	ssModeECB(a0, 32, key, 32, b, 32, 64, ssIdPadding00, 0x00);
+	ssModeECB(a0, 32, key, 32, b, 32, 64, ssIdPadding00, ssIdCipherAlgorithmMagma ,0x00);
 	for (int i = 0; i < 32; ++i)
 	{
 		if (b[i] != a1[i])
@@ -101,7 +101,7 @@ void ssModeECBTest()
 	else
 		printf("ssEncryptModeECB - ERROR\n");
 
-	ssModeECB(a1, 32, key, 32, b, 32, 64, ssIdPadding00, 0x01);
+	ssModeECB(a1, 32, key, 32, b, 32, 64, ssIdPadding00, ssIdCipherAlgorithmMagma, 0x01);
 	for (int i = 0; i < 32; ++i)
 	{
 		if (b[i] != a0[i])
@@ -116,7 +116,7 @@ void ssModeECBTest()
 
 int main()
 {
-	ssModeECBTest();
+	ssEncryptBlockMagmaTest();
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

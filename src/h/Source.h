@@ -2,6 +2,7 @@
 #define SOURCE_H
 
 #include <stdint.h>
+#include "SSStatus.h"
 
 #ifndef bool
 typedef int bool;

@@ -16,29 +16,29 @@ void setBlock(uint8_t* in, size_t blockSize, uint8_t* out, int k)
 	}
 }
 
-ssStatus ssEncryptModeECB(uint8_t* in, size_t inSize, uint8_t* key, size_t keySize, uint8_t* out, size_t outSize, size_t blockSize, ssPaddingMode padding)
+ssStatus ssEncryptModeECB(uint8_t* in, size_t inSize, uint8_t* key, size_t keySize, uint8_t* out, size_t outSize, size_t blockSize, ssPaddingMode padding, ssCipherAlgorithms algorythm)
 {
-	if (blockSize == 64)
+	if (algorythm == ssIdCipherAlgorithmMagma)
 	{
 		uint8_t inMagmaBlock[8] = { 0 };
 		uint8_t outMagmaBlock[8] = { 0 };
-			for (int i = 0; i < (int)(outSize / 8); ++i)
-			{
-				getBlock(in, 64, inMagmaBlock, i);
-				ssSwab8_64(inMagmaBlock);
-				ssEncryptBlockMagma(inMagmaBlock, key, outMagmaBlock);
-				ssSwab8_64(outMagmaBlock);
-				setBlock(outMagmaBlock, 64, out, i);
-			}
-			return SSStatusSuccess;
+		for (int i = 0; i < (int)(outSize / 8); ++i)
+		{
+			getBlock(in, 64, inMagmaBlock, i);
+			ssSwab8_64(inMagmaBlock);
+			ssEncryptBlockMagma(inMagmaBlock, key, outMagmaBlock);
+			ssSwab8_64(outMagmaBlock);
+			setBlock(outMagmaBlock, 64, out, i);
+		}
+		return SSStatusSuccess;
 	}
-	else if (blockSize == 128)
+	else if (algorythm == ssIdCipherAlgorithmKyznechik)
 		return SSStatusNotSupported;
 }
 
-ssStatus ssDecryptModeECB(uint8_t* in, size_t inSize, uint8_t* key, size_t keySize, uint8_t* out, size_t outSize, size_t blockSize, ssPaddingMode padding)
+ssStatus ssDecryptModeECB(uint8_t* in, size_t inSize, uint8_t* key, size_t keySize, uint8_t* out, size_t outSize, size_t blockSize, ssPaddingMode padding, ssCipherAlgorithms algorythm)
 {
-	if (blockSize == 64)
+	if (algorythm == ssIdCipherAlgorithmMagma)
 	{
 		uint8_t inMagmaBlock[8] = { 0 };
 		uint8_t outMagmaBlock[8] = { 0 };
@@ -52,11 +52,11 @@ ssStatus ssDecryptModeECB(uint8_t* in, size_t inSize, uint8_t* key, size_t keySi
 		}
 		return SSStatusSuccess;
 	}
-	else if (blockSize == 128)
+	else if (algorythm == ssIdCipherAlgorithmKyznechik)
 		return SSStatusNotSupported;
 }
 
-ssStatus ssModeECB(uint8_t* in, size_t inSize, uint8_t* key, size_t keySize, uint8_t* out, size_t outSize, size_t blockSize, ssPaddingMode padding, int reverse)
+ssStatus ssModeECB(uint8_t* in, size_t inSize, uint8_t* key, size_t keySize, uint8_t* out, size_t outSize, size_t blockSize, ssPaddingMode padding, ssCipherAlgorithms algorythm, int reverse)
 {
 	if ((in == NULL) || (key == NULL) || (out == NULL) || ((blockSize % 8) != 0))
 	{
@@ -71,9 +71,9 @@ ssStatus ssModeECB(uint8_t* in, size_t inSize, uint8_t* key, size_t keySize, uin
 		return SSStatusInvalidParameter;
 
 	if (reverse == 0x00)
-		ssEncryptModeECB(in, inSize, key, keySize, out, outSize, blockSize, padding);
+		ssEncryptModeECB(in, inSize, key, keySize, out, outSize, blockSize, padding, algorythm);
 	else if (reverse == 0x01)
-		ssDecryptModeECB(in, inSize, key, keySize, out, outSize, blockSize, padding);
+		ssDecryptModeECB(in, inSize, key, keySize, out, outSize, blockSize, padding, algorythm);
 	else
 		return SSStatusError;
 }

@@ -2,7 +2,7 @@
 #define SSPCIPHER_H
 
 #include "Source.h"
-#include "SSStatus.h"
+
 
 struct ssEncryptionCtx_t {
 	uint8_t* initializationVector;

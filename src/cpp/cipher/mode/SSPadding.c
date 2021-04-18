@@ -55,3 +55,8 @@ ssStatus ssPadding03(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize)
 	else
 		return SSStatusError;
 }
+
+ssStatus ssPaddingCTR(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize)
+{
+	
+}
