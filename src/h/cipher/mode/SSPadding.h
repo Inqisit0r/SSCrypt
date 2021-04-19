@@ -1,15 +1,13 @@
 #ifndef SSPADDING_H
 #define SSPADDING_H
 
+#define MAGMA_BLOCK_SIZE 8
+
 #include "SSCrypt.h"
 #include "Source.h"
 
-ssStatus ssPadding01(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize);
+ssStatus ssPaddingMAGMA00(uint8_t* in, size_t inSize, uint8_t* block, size_t* blockSize);
 
-ssStatus ssPadding02(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize);
-
-ssStatus ssPadding03(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize);
-
-ssStatus ssPaddingCTR(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize);
+ssStatus ssPaddingMAGMA01(uint8_t* in, size_t inSize, uint8_t* block, size_t* blockSize);
 
 #endif //!SSPADDING_H

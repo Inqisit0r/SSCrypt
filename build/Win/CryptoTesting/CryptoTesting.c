@@ -13,11 +13,20 @@ void ssEncryptBlockMagmaTest()
 	  0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7,
 	  0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff };
 
-	uint64_t a = 0xfedcba9876543210;
-	uint64_t b = 0;
+	uint8_t a[] = { 0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10 };
+	uint8_t b[8] = { 0 };
 
-	ssEncryptBlockMagma((uint8_t*)&a, Key, (uint8_t*)&b);
-	printf("%llx", b);
+	ssEncryptBlockMagma(a, Key, b);
+	for (int i = 0; i < 8; ++i) {
+		if (b[i] >= 0x10)
+		{
+			printf("%x", b[i]);
+		}
+		else
+		{
+			printf("0%x", b[i]);
+		}
+	}
 }
 
 //Сделать проверку для Decrypt

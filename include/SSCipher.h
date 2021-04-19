@@ -21,9 +21,8 @@ typedef enum ssCipherMode_t {
 
 /** @brief Паддинги */
 typedef enum ssPaddingMode_t {
-	ssIdPadding00,
-	ssIdPadding01,
-	ssIdPaddingCTR
+	ssIdPaddingMAGMA00,
+	ssIdPaddingMAGMA01
 } ssPaddingMode;
 
 /** @brief Шифрование входного битового вектора "vIn" размера "sInSize",

@@ -36,6 +36,9 @@
     <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeCTR.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp\cipher\SSConvertors.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\h\Source.h">
@@ -63,6 +66,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\h\cipher\mode\SSMode.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\h\cipher\SSConvertors.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

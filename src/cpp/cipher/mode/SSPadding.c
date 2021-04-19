@@ -1,62 +1,78 @@
 #include "SSPadding.h"
 #include <stdint.h>
 
-ssStatus ssPadding01(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize)
+void ssPadding01(uint8_t* in, size_t inSize, uint8_t* block, size_t blockSize)
 {
-	if (inSize <= outSize)
+	size_t i = 0;
+	for  (i; i < inSize; ++i)
 	{
-		size_t i = 0;
-		for (i; i < inSize; ++i)
-		{
-			out[i] = in[i];
-		}
-		for (; i < outSize; ++i)
-		{
-			out[i] = 0x00;
-		}
-		return SSStatusSuccess;
+		block[i] = in[i];
 	}
-	else
-		return SSStatusError;
+	for (i; i < blockSize; ++i)
+	{
+		block[i] = 0x00;
+	}
 }
 
-ssStatus ssPadding02(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize)
+void ssPadding02(uint8_t* in, size_t inSize, uint8_t* block, size_t blockSize)
 {
-	if (inSize <= outSize)
+	size_t i = 0;
+	for (i; i < inSize; ++i)
 	{
-		size_t i = 0;
-		for (i; i < inSize; ++i)
-		{
-			out[i] = in[i];
-		}
-		if (inSize < outSize)
-		{
-			out[i] = 0x10;
-			++i;
-		}
-		for (; i < outSize; ++i)
-		{
-			out[i] = 0x00;
-		}
-		return SSStatusSuccess;
+		block[i] = in[i];
 	}
-	else
-		return SSStatusError;
+	if (inSize < blockSize)
+	{
+		block[i] = 0x10;
+		++i;
+	}
+	for (i; i < blockSize; ++i)
+	{
+		block[i] = 0x00;
+	}
 }
 
-ssStatus ssPadding03(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize)
+void ssPadding03(uint8_t* in, size_t inSize, uint8_t* block, size_t blockSize)
 {
-	if (inSize == outSize)
-		return SSStatusSuccess;
-	else if (inSize < outSize)
+	if (inSize < blockSize)
 	{
-		return ssPadding02(in, inSize, out, outSize);
+		ssPadding02(in, inSize, block, blockSize);
 	}
-	else
-		return SSStatusError;
 }
 
-ssStatus ssPaddingCTR(uint8_t* in, size_t inSize, uint8_t* out, size_t outSize)
+ssStatus ssPaddingMAGMA00(uint8_t* in, size_t inSize, uint8_t* block, size_t* blockSize)
 {
-	
+	if ((in == NULL) || (inSize == 0) || (block == NULL))
+	{
+		if (blockSize != NULL)
+		{
+			*blockSize = 8;
+			return SSStatusSuccess;
+		}
+		else if (blockSize == NULL)
+			return SSStatusInvalidParameter;
+	}
+	ssPadding01(in, inSize, block, MAGMA_BLOCK_SIZE);
+	return SSStatusSuccess;
+}
+
+ssStatus ssPaddingMAGMA01(uint8_t* in, size_t inSize, uint8_t* block, size_t* blockSize)
+{
+	if ((in == NULL) || (inSize == 0) || (block == NULL))
+	{
+		if (blockSize != NULL)
+		{
+			*blockSize = 8;
+			return SSStatusSuccess;
+		}
+		else if (blockSize == NULL)
+			return SSStatusInvalidParameter;
+	}
+	ssPadding03(in, inSize, block, MAGMA_BLOCK_SIZE);
+	return SSStatusSuccess;
+}
+
+ssStatus ssPaddingKyznechik(uint8_t* in, size_t inSize, uint8_t* block, size_t blockSize)
+{
+	return SSStatusNotSupported;
 }

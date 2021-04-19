@@ -9,7 +9,15 @@
 *	@param[reverse = 0x00] - зашифрование
 *	@param[reverse = 0x01] - расшифрование
 */
-ssStatus ssModeECB(uint8_t* in, size_t inSize, uint8_t* key, size_t keySize, uint8_t* out, size_t outSize, size_t blockSize, ssPaddingMode padding, ssCipherAlgorithms algorythm, int reverse);
+ssStatus ssModeECB(
+	const uint8_t* in,
+	size_t inSize,
+	const uint8_t* key,
+	size_t keySize,
+	uint8_t* out,
+	size_t* outSize,
+	ssStatus(*cipher)(uint8_t* in, uint8_t* key, uint8_t* out),
+	ssStatus(*padding)(uint8_t* in, size_t inSize, uint8_t* block, size_t* blockSize));
 
 ssStatus ssModeCTR(uint8_t* in, size_t inSize, uint8_t* key, size_t keySize, uint8_t* out, size_t outSize, size_t blockSize, int reverse);
 

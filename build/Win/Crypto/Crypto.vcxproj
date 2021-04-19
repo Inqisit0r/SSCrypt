@@ -23,6 +23,7 @@
     <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeECB.c" />
     <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSPadding.c" />
     <ClCompile Include="..\..\..\src\cpp\cipher\SSCipher.c" />
+    <ClCompile Include="..\..\..\src\cpp\cipher\SSConvertors.c" />
     <ClCompile Include="..\..\..\src\cpp\cipher\SSMagma.c" />
     <ClCompile Include="..\..\..\src\cpp\cipher\SSSwaps.c" />
     <ClCompile Include="..\..\..\src\cpp\Crypto.c" />
@@ -34,6 +35,7 @@
     <ClInclude Include="..\..\..\src\h\cipher\mode\SSMode.h" />
     <ClInclude Include="..\..\..\src\h\cipher\mode\SSPadding.h" />
     <ClInclude Include="..\..\..\src\h\cipher\SSCipher_p.h" />
+    <ClInclude Include="..\..\..\src\h\cipher\SSConvertors.h" />
     <ClInclude Include="..\..\..\src\h\cipher\SSMagma.h" />
     <ClInclude Include="..\..\..\src\h\cipher\SSSwaps.h" />
     <ClInclude Include="..\..\..\src\h\Source.h" />

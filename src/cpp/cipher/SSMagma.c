@@ -48,7 +48,7 @@ uint64_t G1(uint32_t a1, uint32_t a0, uint32_t k)
 
 void encrypt(uint8_t* input, uint8_t* key, uint8_t* output)
 {
-	uint64_t in = ssSwap64(conv8to64(input));
+	uint64_t in = ssConv8to64(input);
 	uint64_t out = 0;
 	int i = 0;
 
@@ -62,12 +62,12 @@ void encrypt(uint8_t* input, uint8_t* key, uint8_t* output)
 		a0 = (uint32_t)(out);
 	}
 	out = G1(a1, a0, getRoundKey(31, key));
-	ssSwat64(ssSwap64(out), output);
+	ssSet64to8(out, output);
 }
 
 void decrypt(uint8_t* input, uint8_t* key, uint8_t* output)
 {
-	uint64_t in = ssSwap64(conv8to64(input));
+	uint64_t in = ssConv8to64(input));
 	uint64_t out = 0;
 	int i = 0;
 
@@ -81,7 +81,7 @@ void decrypt(uint8_t* input, uint8_t* key, uint8_t* output)
 		b0 = (uint32_t)(out);
 	}
 	out = G1(b1, b0, getRoundKey(0, key));
-	ssSwat64(ssSwap64(out), output);
+	ssSet64to8(out, output);
 }
 
 ssStatus crypt(uint8_t* in, uint8_t* key, uint8_t* out, int reverse)
