@@ -167,7 +167,7 @@ void ssModeCTRTest()
 		printf("ssEncryptModeCTR ERROR\n");
 	}
 
-	if (SSStatusSuccess != (status = ssModeCTR(a1, 32, key, 32, b, 32, iv, 4, ssPaddingMAGMA00, ssDecryptBlockMagma, ssPaddingMAGMA00)))
+	if (SSStatusSuccess != (status = ssModeCTR(a1, 32, key, 32, b, 32, iv, 4, ssPaddingMAGMA00, ssEncryptBlockMagma, ssPaddingMAGMA00)))
 	{
 		printf("ssModeCTR ERROR");
 		return status;
