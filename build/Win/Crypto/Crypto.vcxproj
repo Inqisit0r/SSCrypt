@@ -32,11 +32,11 @@
     <ClInclude Include="..\..\..\include\SSCipher.h" />
     <ClInclude Include="..\..\..\include\SSCrypt.h" />
     <ClInclude Include="..\..\..\include\SSStatus.h" />
-    <ClInclude Include="..\..\..\src\h\cipher\mode\SSMode.h" />
-    <ClInclude Include="..\..\..\src\h\cipher\mode\SSPadding.h" />
     <ClInclude Include="..\..\..\src\h\cipher\SSCipher_p.h" />
     <ClInclude Include="..\..\..\src\h\cipher\SSConvertors.h" />
     <ClInclude Include="..\..\..\src\h\cipher\SSMagma.h" />
+    <ClInclude Include="..\..\..\src\h\cipher\SSMode.h" />
+    <ClInclude Include="..\..\..\src\h\cipher\SSPadding.h" />
     <ClInclude Include="..\..\..\src\h\cipher\SSSwaps.h" />
     <ClInclude Include="..\..\..\src\h\Source.h" />
   </ItemGroup>

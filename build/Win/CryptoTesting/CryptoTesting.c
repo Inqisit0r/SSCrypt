@@ -5,6 +5,7 @@
 #include "SSMode.h"
 #include <stdio.h>
 
+// Переделать
 void ssEncryptBlockMagmaTest()
 {
 	uint8_t Key[] =
@@ -29,40 +30,18 @@ void ssEncryptBlockMagmaTest()
 	}
 }
 
-//Сделать проверку для Decrypt
-
-//Переделать
-void ssPaddingTest()
+void ssDecryptBlockMagmaTest()
 {
-	uint8_t a1[] = { 0x92, 0xde, 0xf0, 0x6b };
-	uint8_t a0[] = { 0x92, 0xde, 0xf0, 0x6b, 0x3c, 0x13 };
+	uint8_t Key[] =
+	{ 0xff, 0xee, 0xdd, 0xcc, 0xbb, 0xaa, 0x99, 0x88,
+	  0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11, 0x00,
+	  0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7,
+	  0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff };
+
+	uint8_t a[] = { 0x4e, 0xe9, 0x01, 0xe5, 0xc2, 0xd8, 0xca, 0x3d };
 	uint8_t b[8] = { 0 };
-	ssPadding01(a0, 6, b, 8);
-	printf("\nssPadding01 result = ");
-	for (int i = 0; i < 8; ++i) {
-		if (b[i] >= 0x10)
-		{
-			printf("%x", b[i]);
-		}
-		else
-		{
-			printf("0%x", b[i]);
-		}
-	}
-	ssPadding02(a0, 6, b, 8);
-	printf("\nssPadding02 result = ");
-	for (int i = 0; i < 8; ++i) {
-		if (b[i] >= 0x10)
-		{
-			printf("%x", b[i]);
-		}
-		else
-		{
-			printf("0%x", b[i]);
-		}
-	}
-	ssPadding03(a0, 6, b, 8);
-	printf("\nssPadding03 result = ");
+
+	ssDecryptBlockMagma(a, Key, b);
 	for (int i = 0; i < 8; ++i) {
 		if (b[i] >= 0x10)
 		{
@@ -98,36 +77,122 @@ void ssModeECBTest()
 
 	uint8_t b[32] = { 0 };
 
-	ssModeECB(a0, 32, key, 32, b, 32, 64, ssIdPadding00, ssIdCipherAlgorithmMagma ,0x00);
+	ssStatus status = SSStatusSuccess;
+	if (SSStatusSuccess != (status = ssModeECB(a0, 32, key, 32, b, 32, ssEncryptBlockMagma, ssPaddingMAGMA00)))
+	{
+		printf("ssModeECB ERROR");
+		return status;
+	}
 	for (int i = 0; i < 32; ++i)
 	{
 		if (b[i] != a1[i])
+		{
 			chek = 0x01;
+		}
+	}
+	if (chek == 0x00)
+	{
+		printf("ssEncryptModeECB OK\n");
+	}
+	else if (chek == 0x01)
+	{
+		printf("ssEncryptModeECB ERROR\n");
 	}
 
-	if (chek == 0x00)
-		printf("ssEncryptModeECB - OK\n");
-	else
-		printf("ssEncryptModeECB - ERROR\n");
-
-	ssModeECB(a1, 32, key, 32, b, 32, 64, ssIdPadding00, ssIdCipherAlgorithmMagma, 0x01);
+	if (SSStatusSuccess != (status = ssModeECB(a1, 32, key, 32, b, 32, ssDecryptBlockMagma, ssPaddingMAGMA00)))
+	{
+		printf("ssModeECB ERROR");
+		return status;
+	}
 	for (int i = 0; i < 32; ++i)
 	{
 		if (b[i] != a0[i])
+		{
 			chek = 0x01;
+		}
+	}
+	if (chek == 0x00)
+	{
+		printf("ssDecryptModeECB OK");
+	}
+	else if (chek == 0x01)
+	{
+		printf("ssDecryptModeECB ERROR");
+	}
+}
+
+//Посмотреть дешифратор
+void ssModeCTRTest()
+{
+	int chek = 0x00;
+	uint8_t iv[] = { 0x12, 0x34, 0x56, 0x78 };
+	uint8_t a0[] =
+	{ 0x92, 0xde, 0xf0, 0x6b, 0x3c, 0x13, 0x0a, 0x59,
+	  0xdb, 0x54, 0xc7, 0x04, 0xf8, 0x18, 0x9d, 0x20,
+	  0x4a, 0x98, 0xfb, 0x2e, 0x67, 0xa8, 0x02, 0x4c,
+	  0x89, 0x12, 0x40, 0x9b, 0x17, 0xb5, 0x7e, 0x41 };
+
+	uint8_t a1[] =
+	{ 0x4e, 0x98, 0x11, 0x0c, 0x97, 0xb7, 0xb9, 0x3c,
+	  0x3e, 0x25, 0x0d, 0x93, 0xd6, 0xe8, 0x5d, 0x69,
+	  0x13, 0x6d, 0x86, 0x88, 0x07, 0xb2, 0xdb, 0xef,
+	  0x56, 0x8e, 0xb6, 0x80, 0xab, 0x52, 0xa1, 0x2d };
+
+	uint8_t key[] =
+	{ 0xff, 0xee, 0xdd, 0xcc, 0xbb, 0xaa, 0x99, 0x88,
+	  0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11, 0x00,
+	  0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7,
+	  0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff };	
+
+	uint8_t b[32] = { 0 };
+	ssStatus status = SSStatusSuccess;
+	if (SSStatusSuccess != (status = ssModeCTR(a0, 32, key, 32, b, 32, iv, 4, ssPaddingMAGMA00, ssEncryptBlockMagma, ssPaddingMAGMA00)))
+	{
+		printf("ssModeCTR ERROR");
+		return status;
+	}
+	for (int i = 0; i < 32; ++i)
+	{
+		if (b[i] != a1[i])
+		{
+			chek = 0x01;
+		}
+	}
+	if (chek == 0x00)
+	{
+		printf("ssEncryptModeCTR OK\n");
+	}
+	else if (chek == 0x01)
+	{
+		printf("ssEncryptModeCTR ERROR\n");
 	}
 
+	if (SSStatusSuccess != (status = ssModeCTR(a1, 32, key, 32, b, 32, iv, 4, ssPaddingMAGMA00, ssDecryptBlockMagma, ssPaddingMAGMA00)))
+	{
+		printf("ssModeCTR ERROR");
+		return status;
+	}
+	for (int i = 0; i < 32; ++i)
+	{
+		if (b[i] != a0[i])
+		{
+			chek = 0x01;
+		}
+	}
 	if (chek == 0x00)
-		printf("ssDecryptModeECB - OK");
-	else
-		printf("ssDecryptModeECB - ERROR");
+	{
+		printf("ssDecryptModeCTR OK\n");
+	}
+	else if (chek == 0x01)
+	{
+		printf("ssDecryptModeCTR ERROR\n");
+	}
 }
 
 int main()
 {
-	ssEncryptBlockMagmaTest();
-}
 
+}
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 

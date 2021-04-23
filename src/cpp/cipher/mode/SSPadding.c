@@ -42,7 +42,7 @@ void ssPadding03(uint8_t* in, size_t inSize, uint8_t* block, size_t blockSize)
 
 ssStatus ssPaddingMAGMA00(uint8_t* in, size_t inSize, uint8_t* block, size_t* blockSize)
 {
-	if ((in == NULL) || (inSize == 0) || (block == NULL))
+	if ((in == NULL) && (inSize == 0) && (block == NULL))
 	{
 		if (blockSize != NULL)
 		{
@@ -50,15 +50,23 @@ ssStatus ssPaddingMAGMA00(uint8_t* in, size_t inSize, uint8_t* block, size_t* bl
 			return SSStatusSuccess;
 		}
 		else if (blockSize == NULL)
+		{
 			return SSStatusInvalidParameter;
+		}
 	}
-	ssPadding01(in, inSize, block, MAGMA_BLOCK_SIZE);
-	return SSStatusSuccess;
+	else if ((in == NULL) || (inSize == 0) || (block == NULL) || (blockSize == NULL))
+	{
+		return SSStatusInvalidParameter;
+	} 
+	else {
+		ssPadding01(in, inSize, block, MAGMA_BLOCK_SIZE);
+		return SSStatusSuccess;
+	}
 }
 
 ssStatus ssPaddingMAGMA01(uint8_t* in, size_t inSize, uint8_t* block, size_t* blockSize)
 {
-	if ((in == NULL) || (inSize == 0) || (block == NULL))
+	if ((in == NULL) && (inSize == 0) && (block == NULL))
 	{
 		if (blockSize != NULL)
 		{
@@ -66,13 +74,27 @@ ssStatus ssPaddingMAGMA01(uint8_t* in, size_t inSize, uint8_t* block, size_t* bl
 			return SSStatusSuccess;
 		}
 		else if (blockSize == NULL)
+		{
 			return SSStatusInvalidParameter;
+		}
+	}
+	else if ((in == NULL) || (inSize == 0) || (block == NULL))
+	{
+		return SSStatusInvalidParameter;
+	}
+	else {
+		return SSStatusError;
 	}
 	ssPadding03(in, inSize, block, MAGMA_BLOCK_SIZE);
 	return SSStatusSuccess;
 }
 
-ssStatus ssPaddingKyznechik(uint8_t* in, size_t inSize, uint8_t* block, size_t blockSize)
+ssStatus ssPaddingKYZNECHIK00(uint8_t* in, size_t inSize, uint8_t* block, size_t* blockSize)
+{
+	return SSStatusNotSupported;
+}
+
+ssStatus ssPaddingKYZNECHIK01(uint8_t* in, size_t inSize, uint8_t* block, size_t* blockSize)
 {
 	return SSStatusNotSupported;
 }

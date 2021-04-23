@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы заголовков\include">
+      <UniqueIdentifier>{3165e4e9-6726-4808-ade1-42edc45eed2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\secondary functions">
+      <UniqueIdentifier>{f11e6026-7528-4a46-bec3-db6f043961df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\cipher">
+      <UniqueIdentifier>{7237c42e-1800-4635-b52f-7bb14450fb59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\cpp\cipher\SSCipher.c">
@@ -44,32 +53,32 @@
     <ClInclude Include="..\..\..\src\h\Source.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\h\cipher\SSCipher_p.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\h\cipher\SSMagma.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\h\cipher\SSSwaps.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\SSCipher.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\SSCrypt.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\SSStatus.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\h\cipher\mode\SSPadding.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\h\cipher\mode\SSMode.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="..\..\..\src\h\cipher\SSSwaps.h">
+      <Filter>Файлы заголовков\secondary functions</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\h\cipher\SSConvertors.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\secondary functions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\h\cipher\SSCipher_p.h">
+      <Filter>Файлы заголовков\cipher</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\h\cipher\SSMagma.h">
+      <Filter>Файлы заголовков\cipher</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\h\cipher\SSPadding.h">
+      <Filter>Файлы заголовков\secondary functions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\h\cipher\SSMode.h">
+      <Filter>Файлы заголовков\cipher</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
