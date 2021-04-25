@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeCTR.c" />
     <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeECB.c" />
+    <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeOFB.c" />
     <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSPadding.c" />
     <ClCompile Include="..\..\..\src\cpp\cipher\SSCipher.c" />
     <ClCompile Include="..\..\..\src\cpp\cipher\SSConvertors.c" />

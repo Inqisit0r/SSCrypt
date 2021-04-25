@@ -10,7 +10,6 @@ void ssIncrement8(uint8_t* in, size_t inSize)
 																	// inSize - i = 0 для i[0]
 }
 
-//Доделать - переделать
 ssStatus ssModeCTR(
 	const uint8_t* in, 
 	size_t inSize, 
@@ -20,7 +19,7 @@ ssStatus ssModeCTR(
 	size_t outSize, 
 	const uint8_t* iv,
 	size_t ivSize,
-	ssStatus(*init)(uint8_t* iv, size_t ivSize, uint8_t* CTR, size_t CTRSize),
+	ssStatus(*init)(uint8_t* iv, size_t ivSize, uint8_t* CTR, size_t* CTRSize),
 	ssStatus(*cipher)(uint8_t* in, uint8_t* key, uint8_t* out), 
 	ssStatus(*padding)(uint8_t* in, size_t inSize, uint8_t* block, size_t* blockSize))
 {

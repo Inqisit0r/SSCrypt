@@ -48,6 +48,9 @@
     <ClCompile Include="..\..\..\src\cpp\cipher\SSConvertors.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeOFB.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\h\Source.h">
