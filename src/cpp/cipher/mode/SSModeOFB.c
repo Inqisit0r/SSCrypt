@@ -18,8 +18,6 @@ ssStatus ssModeOFB(
 	size_t blockSize = 0;
 	uint8_t* OFB = NULL;
 	uint8_t* bufferOut = NULL;
-	uint8_t* bufferIn = NULL;
-	size_t OFBSize = 0;
 
 	if ((in == NULL) || (inSize == 0) || (key == NULL) || (keySize == 0) || (out == NULL) || (outSize == 0) || (iv == NULL) || (ivSize == 0))
 	{
@@ -35,17 +33,10 @@ ssStatus ssModeOFB(
 		status = SSStatusError;
 		goto CleanUp;
 	}
-	OFBSize = 2 * blockSize;
-	OFB = (uint8_t*)malloc(2 * blockSize);
+	OFB = (uint8_t*)malloc(ivSize);
 	bufferOut = (uint8_t*)malloc(blockSize);
-	bufferIn = (uint8_t*)malloc(blockSize);
-	if (SSStatusSuccess != (status = init(iv, ivSize, OFB, &OFBSize)))
+	if (SSStatusSuccess != (status = init(iv, ivSize, OFB, &ivSize)))
 	{
-		goto CleanUp;
-	}
-	if (OFBSize == 0)
-	{
-		status = SSStatusError;
 		goto CleanUp;
 	}
 	
@@ -55,20 +46,16 @@ ssStatus ssModeOFB(
 		{
 			goto CleanUp;
 		}
-		if (OFBSize != blockSize)
+		if (ivSize != blockSize)
 		{
-			//Обновление iv и запись криптограммы в out
 			for (size_t k = 0; k < blockSize; ++k)
 			{
 				OFB[k] = OFB[blockSize + k];
-			}
-			for (size_t k = 0; k < blockSize; ++k)
-			{
 				OFB[blockSize + k] = bufferOut[k];
 				out[i + k] = bufferOut[k] ^ in[i + k];
 			}
 		}
-		else if (OFBSize == blockSize)
+		else if (ivSize == blockSize)
 		{
 			for (size_t k = 0; k < blockSize; ++k)
 			{
@@ -79,7 +66,7 @@ ssStatus ssModeOFB(
 
 	if (i != inSize)
 	{
-		if (SSStatusSuccess != (status = (cipher(bufferIn, key, bufferOut))))
+		if (SSStatusSuccess != (status = (cipher(OFB, key, bufferOut))))
 		{
 			goto CleanUp;
 		}
@@ -94,10 +81,6 @@ CleanUp:
 	{
 		free(OFB);
 	}
-	if (bufferIn)
-	{
-		free(bufferIn);
-	}	
 	if (bufferOut)
 	{
 		free(bufferOut);
