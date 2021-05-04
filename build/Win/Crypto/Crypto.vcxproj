@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeCBC.c" />
+    <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeCFB.c" />
     <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeCTR.c" />
     <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeECB.c" />
     <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeOFB.c" />

@@ -48,10 +48,13 @@ ssStatus ssModeOFB(
 		}
 		if (ivSize != blockSize)
 		{
-			for (size_t k = 0; k < blockSize; ++k)
+			for (size_t k = 0; k < ivSize - blockSize; ++k)
 			{
 				OFB[k] = OFB[blockSize + k];
-				OFB[blockSize + k] = bufferOut[k];
+			}
+			for (size_t k = 0; k < blockSize; ++k)
+			{
+				OFB[ivSize - blockSize + k] = bufferOut[k];
 				out[i + k] = bufferOut[k] ^ in[i + k];
 			}
 		}
@@ -60,6 +63,7 @@ ssStatus ssModeOFB(
 			for (size_t k = 0; k < blockSize; ++k)
 			{
 				out[i + k] = bufferOut[k] ^ in[i + k];
+				OFB[k] = bufferOut[k];
 			}
 		}
 	}
