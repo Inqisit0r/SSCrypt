@@ -22,46 +22,58 @@
     <Filter Include="Файлы заголовков\cipher">
       <UniqueIdentifier>{7237c42e-1800-4635-b52f-7bb14450fb59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\modes">
+      <UniqueIdentifier>{bf82a18d-0c50-4ea6-ab1a-7f85c49fef9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\cipher">
+      <UniqueIdentifier>{b580a709-f810-4631-8d67-c0d4608880e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\secondary functions">
+      <UniqueIdentifier>{e887ff90-6c3f-4e5d-9f4e-f6f0cddd4075}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\cpp\cipher\SSCipher.c">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp\cipher\SSMagma.c">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\cpp\cipher\SSSwaps.c">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp\Crypto.c">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\secondary functions</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSPadding.c">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeECB.c">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeCTR.c">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp\cipher\SSConvertors.c">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\secondary functions</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeOFB.c">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\modes</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeCBC.c">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeMAC.c">
+      <Filter>Исходные файлы\modes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeECB.c">
+      <Filter>Исходные файлы\modes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeCTR.c">
+      <Filter>Исходные файлы\modes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeCFB.c">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\modes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp\cipher\mode\SSModeCBC.c">
+      <Filter>Исходные файлы\modes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp\cipher\SSMagma.c">
+      <Filter>Исходные файлы\cipher</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp\cipher\SSConvertors.c">
+      <Filter>Исходные файлы\secondary functions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp\cipher\SSCipher.c">
+      <Filter>Исходные файлы\cipher</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp\Crypto.c">
+      <Filter>Исходные файлы\cipher</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpp\cipher\SSShifts.c">
+      <Filter>Исходные файлы\secondary functions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\src\h\Source.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\SSCipher.h">
       <Filter>Файлы заголовков\include</Filter>
     </ClInclude>
@@ -70,12 +82,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\include\SSStatus.h">
       <Filter>Файлы заголовков\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\h\cipher\SSSwaps.h">
-      <Filter>Файлы заголовков\secondary functions</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\h\cipher\SSConvertors.h">
-      <Filter>Файлы заголовков\secondary functions</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\h\cipher\SSCipher_p.h">
       <Filter>Файлы заголовков\cipher</Filter>
@@ -88,6 +94,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\h\cipher\SSMode.h">
       <Filter>Файлы заголовков\cipher</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\h\Source.h">
+      <Filter>Файлы заголовков\secondary functions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\h\cipher\SSSwaps.h">
+      <Filter>Файлы заголовков\secondary functions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\h\cipher\SSConvertors.h">
+      <Filter>Файлы заголовков\secondary functions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\h\cipher\SSShifts.h">
+      <Filter>Файлы заголовков\secondary functions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

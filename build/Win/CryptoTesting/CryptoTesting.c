@@ -5,58 +5,57 @@
 #include "SSMode.h"
 #include <stdio.h>
 
-// Переделать
-void ssEncryptBlockMagmaTest()
+void ssBlockMagmaTest()
 {
-	uint8_t Key[] =
+	int check = 0x00;
+	uint8_t key[] =
 	{ 0xff, 0xee, 0xdd, 0xcc, 0xbb, 0xaa, 0x99, 0x88,
 	  0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11, 0x00,
 	  0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7,
 	  0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff };
 
-	uint8_t a[] = { 0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10 };
+	uint8_t a0[] = { 0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10 };
+	uint8_t a1[] = { 0x4e, 0xe9, 0x01, 0xe5, 0xc2, 0xd8, 0xca, 0x3d };
 	uint8_t b[8] = { 0 };
 
-	ssEncryptBlockMagma(a, Key, b);
-	for (int i = 0; i < 8; ++i) {
-		if (b[i] >= 0x10)
+	ssEncryptBlockMagma(a0, key, b);
+	for (int i = 0; i < 8; ++i)
+	{
+		if (b[i] != a1[i])
 		{
-			printf("%x", b[i]);
-		}
-		else
-		{
-			printf("0%x", b[i]);
+			check = 0x01;
 		}
 	}
-}
+	if (check == 0x00)
+	{
+		printf("ssEncryptBlockMagma OK\n");
+	}
+	else if (check == 0x01)
+	{
+		printf("ssEncryptBlockMagma ERROR\n");
+	}
 
-void ssDecryptBlockMagmaTest()
-{
-	uint8_t Key[] =
-	{ 0xff, 0xee, 0xdd, 0xcc, 0xbb, 0xaa, 0x99, 0x88,
-	  0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11, 0x00,
-	  0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7,
-	  0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff };
-
-	uint8_t a[] = { 0x4e, 0xe9, 0x01, 0xe5, 0xc2, 0xd8, 0xca, 0x3d };
-	uint8_t b[8] = { 0 };
-
-	ssDecryptBlockMagma(a, Key, b);
-	for (int i = 0; i < 8; ++i) {
-		if (b[i] >= 0x10)
+	ssDecryptBlockMagma(a1, key, b);
+	for (int i = 0; i < 8; ++i)
+	{
+		if (b[i] != a0[i])
 		{
-			printf("%x", b[i]);
+			check = 0x01;
 		}
-		else
-		{
-			printf("0%x", b[i]);
-		}
+	}
+	if (check == 0x00)
+	{
+		printf("ssDecryptBlockMagma OK\n");
+	}
+	else if (check == 0x01)
+	{
+		printf("ssDecryptBlockMagma ERROR\n");
 	}
 }
 
 void ssModeECBTest()
 {
-	int chek = 0x00;
+	int check = 0x00;
 	uint8_t key[] = 
 	{ 0xff, 0xee, 0xdd, 0xcc, 0xbb, 0xaa, 0x99, 0x88, 
 	  0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11, 0x00, 
@@ -87,14 +86,14 @@ void ssModeECBTest()
 	{
 		if (b[i] != a1[i])
 		{
-			chek = 0x01;
+			check = 0x01;
 		}
 	}
-	if (chek == 0x00)
+	if (check == 0x00)
 	{
 		printf("ssEncryptModeECB OK\n");
 	}
-	else if (chek == 0x01)
+	else if (check == 0x01)
 	{
 		printf("ssEncryptModeECB ERROR\n");
 	}
@@ -108,14 +107,14 @@ void ssModeECBTest()
 	{
 		if (b[i] != a0[i])
 		{
-			chek = 0x01;
+			check = 0x01;
 		}
 	}
-	if (chek == 0x00)
+	if (check == 0x00)
 	{
 		printf("ssDecryptModeECB OK");
 	}
-	else if (chek == 0x01)
+	else if (check == 0x01)
 	{
 		printf("ssDecryptModeECB ERROR");
 	}
@@ -123,7 +122,7 @@ void ssModeECBTest()
 
 void ssModeCTRTest()
 {
-	int chek = 0x00;
+	int check = 0x00;
 	uint8_t iv[] = { 0x12, 0x34, 0x56, 0x78 };
 	uint8_t a0[] =
 	{ 0x92, 0xde, 0xf0, 0x6b, 0x3c, 0x13, 0x0a, 0x59,
@@ -154,14 +153,14 @@ void ssModeCTRTest()
 	{
 		if (b[i] != a1[i])
 		{
-			chek = 0x01;
+			check = 0x01;
 		}
 	}
-	if (chek == 0x00)
+	if (check == 0x00)
 	{
 		printf("ssEncryptModeCTR OK\n");
 	}
-	else if (chek == 0x01)
+	else if (check == 0x01)
 	{
 		printf("ssEncryptModeCTR ERROR\n");
 	}
@@ -175,14 +174,14 @@ void ssModeCTRTest()
 	{
 		if (b[i] != a0[i])
 		{
-			chek = 0x01;
+			check = 0x01;
 		}
 	}
-	if (chek == 0x00)
+	if (check == 0x00)
 	{
 		printf("ssDecryptModeCTR OK\n");
 	}
-	else if (chek == 0x01)
+	else if (check == 0x01)
 	{
 		printf("ssDecryptModeCTR ERROR\n");
 	}
@@ -190,7 +189,7 @@ void ssModeCTRTest()
 
 void ssModeOFBTest()
 {
-	int chek = 0x00;
+	int check = 0x00;
 	uint8_t iv[] = 
 	{ 0x12, 0x34, 0x56, 0x78, 0x90, 0xab, 0xcd, 0xef, 
 	  0x23, 0x45, 0x67, 0x89, 0x0a, 0xbc, 0xde, 0xf1 };
@@ -224,14 +223,14 @@ void ssModeOFBTest()
 	{
 		if (b[i] != a1[i])
 		{
-			chek = 0x01;
+			check = 0x01;
 		}
 	}
-	if (chek == 0x00)
+	if (check == 0x00)
 	{
 		printf("ssEncryptModeOFB OK\n");
 	}
-	else if (chek == 0x01)
+	else if (check == 0x01)
 	{
 		printf("ssEncryptModeOFB ERROR\n");
 	}
@@ -245,14 +244,14 @@ void ssModeOFBTest()
 	{
 		if (b[i] != a0[i])
 		{
-			chek = 0x01;
+			check = 0x01;
 		}
 	}
-	if (chek == 0x00)
+	if (check == 0x00)
 	{
 		printf("ssDecryptModeOFB OK\n");
 	}
-	else if (chek == 0x01)
+	else if (check == 0x01)
 	{
 		printf("ssDecryptModeOFB ERROR\n");
 	}
@@ -260,7 +259,7 @@ void ssModeOFBTest()
 
 void ssModeCBCTest()
 {
-	int chek = 0x00;
+	int check = 0x00;
 	uint8_t iv[] =
 	{ 0x12, 0x34, 0x56, 0x78, 0x90, 0xab, 0xcd, 0xef, 
 	  0x23, 0x45, 0x67, 0x89, 0x0a, 0xbc, 0xde, 0xf1,
@@ -295,14 +294,14 @@ void ssModeCBCTest()
 	{
 		if (b[i] != a1[i])
 		{
-			chek = 0x01;
+			check = 0x01;
 		}
 	}
-	if (chek == 0x00)
+	if (check == 0x00)
 	{
 		printf("ssEncryptModeCBC OK\n");
 	}
-	else if (chek == 0x01)
+	else if (check == 0x01)
 	{
 		printf("ssEncryptModeCBC ERROR\n");
 	}
@@ -316,14 +315,14 @@ void ssModeCBCTest()
 	{
 		if (b[i] != a0[i])
 		{
-			chek = 0x01;
+			check = 0x01;
 		}
 	}
-	if (chek == 0x00)
+	if (check == 0x00)
 	{
 		printf("ssDecryptModeCBC OK\n");
 	}
-	else if (chek == 0x01)
+	else if (check == 0x01)
 	{
 		printf("ssDecryptModeCBC ERROR\n");
 	}
@@ -331,7 +330,7 @@ void ssModeCBCTest()
 
 void ssModeCFBTest()
 {
-	int chek = 0x00;
+	int check = 0x00;
 	uint8_t iv[] =
 	{ 0x12, 0x34, 0x56, 0x78, 0x90, 0xab, 0xcd, 0xef,
 	  0x23, 0x45, 0x67, 0x89, 0x0a, 0xbc, 0xde, 0xf1 };
@@ -365,14 +364,14 @@ void ssModeCFBTest()
 	{
 		if (b[i] != a1[i])
 		{
-			chek = 0x01;
+			check = 0x01;
 		}
 	}
-	if (chek == 0x00)
+	if (check == 0x00)
 	{
 		printf("ssEncryptModeCFB OK\n");
 	}
-	else if (chek == 0x01)
+	else if (check == 0x01)
 	{
 		printf("ssEncryptModeCFB ERROR\n");
 	}
@@ -386,22 +385,65 @@ void ssModeCFBTest()
 	{
 		if (b[i] != a0[i])
 		{
-			chek = 0x01;
+			check = 0x01;
 		}
 	}
-	if (chek == 0x00)
+	if (check == 0x00)
 	{
 		printf("ssDecryptModeCFB OK\n");
 	}
-	else if (chek == 0x01)
+	else if (check == 0x01)
 	{
 		printf("ssDecryptModeCFB ERROR\n");
 	}
 }
 
+void ssModeMACTest()
+{
+	int check = 0x00;
+	uint8_t key[] =
+	{ 0xff, 0xee, 0xdd, 0xcc, 0xbb, 0xaa, 0x99, 0x88,
+	  0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11, 0x00,
+	  0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7,
+	  0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff };
+
+	uint8_t a0[] =
+	{ 0x92, 0xde, 0xf0, 0x6b, 0x3c, 0x13, 0x0a, 0x59,
+	  0xdb, 0x54, 0xc7, 0x04, 0xf8, 0x18, 0x9d, 0x20,
+	  0x4a, 0x98, 0xfb, 0x2e, 0x67, 0xa8, 0x02, 0x4c,
+	  0x89, 0x12, 0x40, 0x9b, 0x17, 0xb5, 0x7e, 0x41 };
+
+	uint8_t a1[] =
+	{ 0x15, 0x4e, 0x72, 0x10, 0x20, 0x30, 0xc5, 0xbb };
+
+	uint8_t b[8] = { 0 };
+
+	ssStatus status = SSStatusSuccess;
+	if (SSStatusSuccess != (status = ssModeMAC(a0, 32, key, 32, b, 8, ssPaddingMAGMA01, ssEncryptBlockMagma, ssPaddingMAGMA00)))
+	{
+		printf("ssModeMAC ERROR");
+		return status;
+	}
+	for (int i = 0; i < 8; ++i)
+	{
+		if (b[i] != a1[i])
+		{
+			check = 0x01;
+		}
+	}
+	if (check == 0x00)
+	{
+		printf("ssModeMAC OK\n");
+	}
+	else if (check == 0x01)
+	{
+		printf("ssModeMAC ERROR\n");
+	}
+}
+
 int main()
 {
-	ssModeCFBTest();
+	
 }
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"

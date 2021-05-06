@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "SSStatus.h"
+#include <string.h>
 #include <stdlib.h>
 
 #ifndef bool
