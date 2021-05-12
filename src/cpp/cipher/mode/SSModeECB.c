@@ -28,7 +28,7 @@ ssStatus ssModeECB(
 
 	while (i + blockSize <= inSize)
 	{
-		if (SSStatusSuccess != (status = cipher(in + (uint8_t)i, key, out + (uint8_t)i)))
+		if (SSStatusSuccess != (status = cipher(in + i, key, out + i)))
 		{
 			return status;
 		}
@@ -46,7 +46,7 @@ ssStatus ssModeECB(
 			}
 			return status;
 		}
-		if (SSStatusSuccess != (status = cipher(block, key, out + (uint8_t)i)))
+		if (SSStatusSuccess != (status = cipher(block, key, out + i)))
 		{
 			if (block)
 			{
@@ -54,6 +54,10 @@ ssStatus ssModeECB(
 			}
 			return status;
 		}
+		if (block)
+		{
+			free(block);
+		}
 	}
-	return SSStatusSuccess;
+	return status;
 }

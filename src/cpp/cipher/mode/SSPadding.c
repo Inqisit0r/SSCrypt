@@ -83,10 +83,9 @@ ssStatus ssPaddingMAGMA01(uint8_t* in, size_t inSize, uint8_t* block, size_t* bl
 		return SSStatusInvalidParameter;
 	}
 	else {
-		return SSStatusError;
+		ssPadding03(in, inSize, block, MAGMA_BLOCK_SIZE);
+		return SSStatusSuccess;
 	}
-	ssPadding03(in, inSize, block, MAGMA_BLOCK_SIZE);
-	return SSStatusSuccess;
 }
 
 ssStatus ssPaddingKYZNECHIK00(uint8_t* in, size_t inSize, uint8_t* block, size_t* blockSize)

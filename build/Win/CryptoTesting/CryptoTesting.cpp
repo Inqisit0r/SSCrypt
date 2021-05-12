@@ -1,9 +1,12 @@
 ﻿// CryptoTesting.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
-
+extern "C" {
 #include "SSMagma.h"
 #include "SSMode.h"
+}
 #include <stdio.h>
+#include <chrono>
+#include <iostream>
 
 void ssBlockMagmaTest()
 {
@@ -80,7 +83,6 @@ void ssModeECBTest()
 	if (SSStatusSuccess != (status = ssModeECB(a0, 32, key, 32, b, 32, ssEncryptBlockMagma, ssPaddingMAGMA00)))
 	{
 		printf("ssModeECB ERROR");
-		return status;
 	}
 	for (int i = 0; i < 32; ++i)
 	{
@@ -101,7 +103,6 @@ void ssModeECBTest()
 	if (SSStatusSuccess != (status = ssModeECB(a1, 32, key, 32, b, 32, ssDecryptBlockMagma, ssPaddingMAGMA00)))
 	{
 		printf("ssModeECB ERROR");
-		return status;
 	}
 	for (int i = 0; i < 32; ++i)
 	{
@@ -147,7 +148,6 @@ void ssModeCTRTest()
 	if (SSStatusSuccess != (status = ssModeCTR(a0, 32, key, 32, b, 32, iv, 4, ssPaddingMAGMA00, ssEncryptBlockMagma, ssPaddingMAGMA00)))
 	{
 		printf("ssModeCTR ERROR");
-		return status;
 	}
 	for (int i = 0; i < 32; ++i)
 	{
@@ -168,7 +168,6 @@ void ssModeCTRTest()
 	if (SSStatusSuccess != (status = ssModeCTR(a1, 32, key, 32, b, 32, iv, 4, ssPaddingMAGMA00, ssEncryptBlockMagma, ssPaddingMAGMA00)))
 	{
 		printf("ssModeCTR ERROR");
-		return status;
 	}
 	for (int i = 0; i < 32; ++i)
 	{
@@ -217,7 +216,6 @@ void ssModeOFBTest()
 	if (SSStatusSuccess != (status = ssModeOFB(a0, 32, key, 32, b, 32, iv, 16, ssPaddingMAGMA00, ssEncryptBlockMagma, ssPaddingMAGMA00)))
 	{
 		printf("ssModeOFB ERROR");
-		return status;
 	}
 	for (int i = 0; i < 32; ++i)
 	{
@@ -238,7 +236,6 @@ void ssModeOFBTest()
 	if (SSStatusSuccess != (status = ssModeOFB(a1, 32, key, 32, b, 32, iv, 16, ssPaddingMAGMA00, ssEncryptBlockMagma, ssPaddingMAGMA00)))
 	{
 		printf("ssModeOFB ERROR");
-		return status;
 	}
 	for (int i = 0; i < 32; ++i)
 	{
@@ -288,7 +285,6 @@ void ssModeCBCTest()
 	if (SSStatusSuccess != (status = ssEncryptModeCBC(a0, 32, key, 32, b, 32, iv, 24, ssPaddingMAGMA00, ssEncryptBlockMagma, ssPaddingMAGMA00)))
 	{
 		printf("ssModeCBC ERROR");
-		return status;
 	}
 	for (int i = 0; i < 32; ++i)
 	{
@@ -309,7 +305,6 @@ void ssModeCBCTest()
 	if (SSStatusSuccess != (status = ssDecryptModeCBC(a1, 32, key, 32, b, 32, iv, 24, ssPaddingMAGMA00, ssDecryptBlockMagma, ssPaddingMAGMA00)))
 	{
 		printf("ssModeCBC ERROR");
-		return status;
 	}
 	for (int i = 0; i < 32; ++i)
 	{
@@ -358,7 +353,6 @@ void ssModeCFBTest()
 	if (SSStatusSuccess != (status = ssEncryptModeCFB(a0, 32, key, 32, b, 32, iv, 16, ssPaddingMAGMA00, ssEncryptBlockMagma, ssPaddingMAGMA00)))
 	{
 		printf("ssModeCFB ERROR");
-		return status;
 	}
 	for (int i = 0; i < 32; ++i)
 	{
@@ -379,7 +373,6 @@ void ssModeCFBTest()
 	if (SSStatusSuccess != (status = ssDecryptModeCFB(a1, 32, key, 32, b, 32, iv, 16, ssPaddingMAGMA00, ssEncryptBlockMagma, ssPaddingMAGMA00)))
 	{
 		printf("ssModeCFB ERROR");
-		return status;
 	}
 	for (int i = 0; i < 32; ++i)
 	{
@@ -422,7 +415,6 @@ void ssModeMACTest()
 	if (SSStatusSuccess != (status = ssModeMAC(a0, 32, key, 32, b, 8, ssPaddingMAGMA01, ssEncryptBlockMagma, ssPaddingMAGMA00)))
 	{
 		printf("ssModeMAC ERROR");
-		return status;
 	}
 	for (int i = 0; i < 8; ++i)
 	{
@@ -443,7 +435,7 @@ void ssModeMACTest()
 
 int main()
 {
-	
+
 }
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"

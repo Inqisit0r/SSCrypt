@@ -84,31 +84,28 @@ void decrypt(uint8_t* input, uint8_t* key, uint8_t* output)
 	ssSet64to8(out, output);
 }
 
-ssStatus crypt(uint8_t* in, uint8_t* key, uint8_t* out, int reverse)
+ssStatus ssEncryptBlockMagma(uint8_t* in, uint8_t* key, uint8_t* out)
 {
 	if ((in == NULL) || (key == NULL) || (out == NULL))
 	{
 		return SSStatusInvalidParameter;
 	}
-	if (reverse == 0x00)
+	else
 	{
 		encrypt(in, key, out);
 		return SSStatusSuccess;
 	}
-	else if (reverse == 0x01)
-	{
-		decrypt(in, key, out); 
-		return SSStatusSuccess;
-	}
-	return SSStatusError;
-}
-
-ssStatus ssEncryptBlockMagma(uint8_t* in, uint8_t* key, uint8_t* out)
-{
-	return crypt(in, key, out, 0x00);
 }
 
 ssStatus ssDecryptBlockMagma(uint8_t* in, uint8_t* key, uint8_t* out)
 {
-	return crypt(in, key, out, 0x01);
+	if ((in == NULL) || (key == NULL) || (out == NULL))
+	{
+		return SSStatusInvalidParameter;
+	}
+	else
+	{
+		decrypt(in, key, out);
+		return SSStatusSuccess;
+	}
 }

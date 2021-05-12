@@ -42,13 +42,13 @@ ssStatus ssModeCTR(
 		status = SSStatusError;
 		goto CleanUp;
 	}
-	buffer = (uint8_t*)malloc(blockSize);
 	CTR = (uint8_t*)malloc(blockSize);
 	if (SSStatusSuccess != (status = init(iv, ivSize, CTR, &blockSize)))
 	{
 		goto CleanUp;
 	}
 
+	buffer = (uint8_t*)malloc(blockSize);
 	for (i; blockSize + i <= inSize; i += blockSize)
 	{
 		if (SSStatusSuccess != (status = cipher(CTR, key, buffer)))
@@ -64,7 +64,6 @@ ssStatus ssModeCTR(
 
 	if (i != inSize)
 	{
-		i = i - (blockSize - 1);
 		if (SSStatusSuccess != (status = cipher(CTR, key, buffer)))
 		{
 			goto CleanUp;

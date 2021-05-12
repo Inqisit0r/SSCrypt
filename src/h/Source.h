@@ -7,13 +7,13 @@
 #include <stdlib.h>
 
 #ifndef bool
-typedef int bool;
+typedef int ssbool;
 #endif
-#ifndef false
-#define false 0x00
+#ifndef ssfalse
+#define ssfalse 0x00
 #endif
-#ifndef true
-#define true !false
+#ifndef sstrue
+#define sstrue !ssfalse
 #endif
 
 

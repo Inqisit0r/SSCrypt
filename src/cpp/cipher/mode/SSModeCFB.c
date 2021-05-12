@@ -34,12 +34,12 @@ ssStatus ssEncryptModeCFB(
 		goto CleanUp;
 	}
 	CFB = (uint8_t*)malloc(ivSize);
-	bufferOut = (uint8_t*)malloc(blockSize);
 	if (SSStatusSuccess != (status = init(iv, ivSize, CFB, &ivSize)))
 	{
 		goto CleanUp;
 	}
 
+	bufferOut = (uint8_t*)malloc(blockSize);
 	for (i; blockSize + i <= inSize; i += blockSize)
 	{
 		if (SSStatusSuccess != (status = (cipher(CFB, key, bufferOut))))
@@ -65,6 +65,18 @@ ssStatus ssEncryptModeCFB(
 				out[i + k] = bufferOut[k] ^ in[i + k];
 				CFB[k] = out[i + k];
 			}
+		}
+	}
+
+	if (i != inSize)
+	{
+		if (SSStatusSuccess != (status = cipher(CFB, key, bufferOut)))
+		{
+			goto CleanUp;
+		}
+		for (i; i < inSize; ++i)
+		{
+			out[i] = in[i] ^ bufferOut[i % 8];
 		}
 	}
 
@@ -114,12 +126,12 @@ ssStatus ssDecryptModeCFB(
 		goto CleanUp;
 	}
 	CFB = (uint8_t*)malloc(ivSize);
-	bufferOut = (uint8_t*)malloc(blockSize);
 	if (SSStatusSuccess != (status = init(iv, ivSize, CFB, &ivSize)))
 	{
 		goto CleanUp;
 	}
 
+	bufferOut = (uint8_t*)malloc(blockSize);
 	for (i; blockSize + i <= inSize; i += blockSize)
 	{
 		if (SSStatusSuccess != (status = (cipher(CFB, key, bufferOut))))
@@ -145,6 +157,18 @@ ssStatus ssDecryptModeCFB(
 				out[i + k] = bufferOut[k] ^ in[i + k];
 				CFB[k] = in[i + k];
 			}
+		}
+	}
+
+	if (i != inSize)
+	{
+		if (SSStatusSuccess != (status = cipher(CFB, key, bufferOut)))
+		{
+			goto CleanUp;
+		}
+		for (i; i < inSize; ++i)
+		{
+			out[i] = in[i] ^ bufferOut[i % 8];
 		}
 	}
 

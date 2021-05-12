@@ -30,10 +30,9 @@ ssStatus ssModeMAC(
 	{
 		return SSStatusError;
 	}
-	B = (uint8_t*)malloc(blockSize);
-	K = (uint8_t*)malloc(blockSize);
 
 	//Получаем R
+	K = (uint8_t*)malloc(blockSize);
 	memset(K, 0x00, blockSize);
 
 	if (SSStatusSuccess != (status = cipher(K, key, K)))
@@ -42,6 +41,7 @@ ssStatus ssModeMAC(
 	}
 
 	//Получаем B
+	B = (uint8_t*)malloc(blockSize);
 	memset(B, 0x00, blockSize - 2);
 	if (blockSize == MAGMA_BLOCK_SIZE)
 	{
@@ -93,7 +93,6 @@ ssStatus ssModeMAC(
 	//Вычисляем имитовставку
 	buffer = (uint8_t*)malloc(blockSize);
 	bufferIn = (uint8_t*)malloc(blockSize);
-
 	if (inSize != blockSize)
 	{
 		for (size_t k = 0; k < blockSize; ++k)
@@ -152,21 +151,6 @@ ssStatus ssModeMAC(
 			for (size_t k = 0; k < blockSize; ++k)
 			{
 				buffer[k] = in[k] ^ K[k];
-			}
-			if (SSStatusSuccess != (status = cipher(buffer, key, out)))
-			{
-				goto CleanUp;
-			}
-		}
-		else if (inSize % blockSize != 0)
-		{
-			if (SSStatusSuccess != (status = padding01(in, inSize, bufferIn, blockSize)))
-			{
-				goto CleanUp;
-			}
-			for (size_t k = 0; k < blockSize; ++k)
-			{
-				buffer[k] = bufferIn[k] ^ K[k];
 			}
 			if (SSStatusSuccess != (status = cipher(buffer, key, out)))
 			{
